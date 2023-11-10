@@ -33,6 +33,15 @@
     height: 100vh;
     color:white;
 }
+.Parent-Projects{
+    display:flex;
+    padding-top: 5rem;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    color:white;
+}
 .Skills {
     display: flex;
     flex-direction: row;

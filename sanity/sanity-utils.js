@@ -17,7 +17,8 @@ export async function getProjects() {
             "image": image.asset->url,
             url,
             description,
-            hashtags
+            hashtags,
+            order
         }`
     );
 
@@ -69,7 +70,7 @@ export async function getAbout() {
             resume
         }`
     );
-
+    
     return data || []; // Ensure data is an array, or return an empty array if it's falsy
   } catch (error) {
     console.error("Error fetching projects:", error);
@@ -88,7 +89,7 @@ export async function getSubtitle() {
       groq`*[_type == "subtitlePage"]{
             _id,
             _createdAt,
-            subtitle
+            list
         }`
     );
 

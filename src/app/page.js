@@ -78,7 +78,7 @@ export default function Home() {
         <span className="Subtitle" id="Subtitle"></span>
       </div>
       {about.map((about) => (
-        <div key = {about._id} id="About">
+        <div key={about._id} id="About">
           <div className="About" key={about._id}>
             <img className="About-img" src={about.image}></img>
             <div className="About-content">
@@ -116,25 +116,28 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="Parent-Skills" id="Projects">
+      <div className="Parent-Projects" id="Projects">
         <h3 className="Project-title font-bold">Projects</h3>
-        <div className="grid grid-cols-1 mx-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
-          {projects.map((project) => (
+        <div className="grid grid-cols-1 mx-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {projects.sort(((a, b) => a.order - b.order)).map((project) => (
             <a href={project.url} key={project._id} target="_blank">
               <div
                 key={project._id}
                 className="max-w-sm hover:scale-105 transition rounded-lg overflow-hidden shadow-lg bg-[#ffffff40]"
                 style={{
-                  height:"100%"
-                }} 
-              
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column", // Align children in a column
+                }}
               >
                 <img
                   className="w-full h-48 object-cover"
                   src={project.image}
                   alt="Project Image"
                 />
-                <div className="px-6 py-4">
+                <div className="px-6 py-4 flex-grow">
+                  {" "}
+                  {/* Use flex-grow to fill remaining space */}
                   <div className="font-bold text-xl mb-2">{project.name}</div>
                   <span className="text-justify text-base">
                     {project.description.map((block) => (
@@ -143,14 +146,16 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="px-6 pt-4 pb-2">
-                  {project.hashtags.map((hashtag) => (
-                    <span
-                      key={hashtag}
-                      className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                    >
-                      #{hashtag}
-                    </span>
-                  ))}
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {project.hashtags.map((hashtag) => (
+                      <span
+                        key={hashtag}
+                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                      >
+                        #{hashtag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </a>

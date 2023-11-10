@@ -4,6 +4,11 @@ const project = {
   type: "document",
   fields: [
     {
+      name:"order",
+      title:"Order",
+      type:"number",
+    },
+    {
       name: "name",
       title: "Project Name",
       type: "string",
