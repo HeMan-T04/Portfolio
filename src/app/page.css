@@ -228,6 +228,9 @@
     .Skills-title{
         font-size: 3rem;    
     }
+    .Project-title{
+        font-size: 3rem;
+    }
     .Skills-grid{
         display:block;
         /* width:100%; */
