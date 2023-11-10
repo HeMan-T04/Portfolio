@@ -4,8 +4,8 @@ const subtitlePage = {
     type: "document",
     fields: [
       {
-        name: "subtitle",
-        title: "Subtitle",
+        name: "list",
+        title: "List",
         type: "array",
         of: [{ type: "string" }],
       }
