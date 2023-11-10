@@ -2,8 +2,8 @@ import { createClient, groq } from "next-sanity";
 
 export async function getProjects() {
   const client = createClient({
-    projectId: "n30lx992",
-    dataset: "production",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
     apiVersion: "2023-11-09",
   });
 
@@ -30,8 +30,8 @@ export async function getProjects() {
 
 export async function getSkills() {
   const client = createClient({
-    projectId: "n30lx992",
-    dataset: "production",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
     apiVersion: "2023-11-09",
   });
   try {
@@ -43,6 +43,30 @@ export async function getSkills() {
             name,
             "slug": slug.current,
             "image": image.asset->url,
+        }`
+    );
+
+    return data || []; // Ensure data is an array, or return an empty array if it's falsy
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return []; // Return an empty array in case of an error
+  }
+}
+
+export async function getAbout() {
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
+    apiVersion: "2023-11-09",
+  });
+  try {
+    const data = await client.fetch(
+      groq`*[_type == "aboutPage"]{
+            _id,
+            _createdAt,
+            "image": image.asset->url,
+            about,
+            resume
         }`
     );
 

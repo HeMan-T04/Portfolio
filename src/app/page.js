@@ -2,22 +2,27 @@
 import Image from "next/image";
 import MatrixRainCanvas from "./canvas";
 import Typewriter from "typewriter-effect/dist/core";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import "./page.css";
-import {getProjects} from '../../sanity/sanity-utils'
-import Projects  from './Projects';
+import { getAbout, getProjects} from "../../sanity/sanity-utils";
 import { getSkills } from "../../sanity/sanity-utils";
 export default function Home() {
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [about, setAbout] = useState([]);
   useEffect(() => {
     // This code will only run in the browser, not during server-side rendering
     var app = document.getElementById("app");
     getProjects().then((data) => setProjects(data));
+    getAbout().then((data) => setAbout(data));
     getSkills().then((data) => setSkills(data));
-    var typewriter = new Typewriter("#Subtitle", {
-      loop: true,
-    },[]);
+    var typewriter = new Typewriter(
+      "#Subtitle",
+      {
+        loop: true,
+      },
+      []
+    );
 
     // screen.orientation.lock(portrait);
 
@@ -72,42 +77,79 @@ export default function Home() {
       </div>
       <div id="About">
         <div className="About">
-          <img className="About-img" src="/profile.jpg"></img>
-          <div className="About-content">
-            <h3 className="font-bold">About</h3>
-            <p className="About-matter">
-              Hello Everyone! My Name is Hemant Kathuria. I am a Cyber Security
-              Analyst and a Full Stack Developer. I enjoy playing CTFs,
-              developing, and learning whenever I get a chance. If you want to
-              play a CTF or discuss anything about security, feel free to ping
-              me.
-            </p>
-            <a
-              className="About-button"
-              target="_blank"
-              href="https://drive.google.com/file/d/1rti-GHkYxs-0NLRuLN0MCXqSCe0FXl-y/view?usp=sharing"
-            >
-              Resume
-            </a>
-          </div>
+          {about.map((about) => (
+            <>
+            <img className="About-img" src={about.image}></img>
+            <div className="About-content">
+              <h3 className="font-bold">About</h3>
+              <span className="About-matter">
+                {about.about.map((block) => (
+                  <p key={block._key}>{block.children[0].text}</p>
+                ))}
+              </span>
+              <a
+                className="About-button hover:scale-105 transition"
+                target="_blank"
+                href={about.resume}
+              >
+                Resume
+              </a>
+            </div>
+            </>
+            ))}
+          
         </div>
       </div>
       <div className="Parent-Skills" id="Skills">
         <h3 className="Skills-title font-bold">Skills</h3>
         <div className="Skills">
           <div className="Skills-grid">
-            {skills.sort((a, b) => a.order-b.order).map((skill) => (
-              <div key={skill._id} className="Skills-card">
-                <img className="Skills-img" src={skill.image} />
-                <h4 className="Skills-card-title">{skill.name}</h4>
-              </div>
-            ))}
+            {skills
+              .sort((a, b) => a.order - b.order)
+              .map((skill) => (
+                <div key={skill._id} className="hover:scale-105 transition">
+                <div key={skill._id} className="Skills-card">
+                  <img className="Skills-img" src={skill.image} />
+                  <h4 className="Skills-card-title">{skill.name}</h4>
+                </div>
+                </div>
+              ))}
           </div>
         </div>
       </div>
       <div className="Parent-Skills" id="Projects">
-        <h3 className="Skills-title font-bold">Projects</h3>
-          <Projects/>
+        <h3 className="Project-title font-bold">Projects</h3>
+        {projects.map((project) => (
+          <a href={project.url} target="_blank">
+          <div key={project._id} className="Projects-card">
+            <div className="max-w-sm hover:scale-105 transition rounded-lg overflow-hidden shadow-lg bg-[#ffffff40]">
+              <img
+                className="w-full h-48 object-cover"
+                src={project.image}
+                alt="Project Image"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{project.name}</div>
+                <span className="text-justify text-base">
+                  {project.description.map((block) => (
+                    <p key={block._key}>{block.children[0].text}</p>
+                  ))}
+                </span>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                {project.hashtags.map((hashtag) => (
+                  <span
+                    key={hashtag}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                  >
+                    #{hashtag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          </a>
+        ))}
       </div>
     </div>
   );

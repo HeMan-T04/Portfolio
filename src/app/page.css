@@ -52,6 +52,16 @@
     margin-bottom:1rem;
 
 }
+.Project-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 3.75rem;
+    line-height: 1;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:2rem;
+
+}
 .Skills-grid{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
