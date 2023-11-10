@@ -70,6 +70,14 @@
     align-items: center;
     color:white;
 }
+.Projects-card{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        color:white;
+}
 .Skills-card{
     display: flex;
     flex-direction: row;

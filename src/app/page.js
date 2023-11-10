@@ -4,17 +4,19 @@ import MatrixRainCanvas from "./canvas";
 import Typewriter from "typewriter-effect/dist/core";
 import { useEffect, useState } from "react";
 import "./page.css";
-import { getAbout, getProjects} from "../../sanity/sanity-utils";
-import { getSkills } from "../../sanity/sanity-utils";
+import { getAbout, getProjects } from "../../sanity/sanity-utils";
+import { getSkills, getSubtitle } from "../../sanity/sanity-utils";
 export default function Home() {
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
   const [about, setAbout] = useState([]);
+  const [subtitle, setSubtitle] = useState([]);
   useEffect(() => {
     // This code will only run in the browser, not during server-side rendering
     var app = document.getElementById("app");
     getProjects().then((data) => setProjects(data));
     getAbout().then((data) => setAbout(data));
+    getSubtitle().then((data) => setSubtitle(data));
     getSkills().then((data) => setSkills(data));
     var typewriter = new Typewriter(
       "#Subtitle",
@@ -25,7 +27,7 @@ export default function Home() {
     );
 
     // screen.orientation.lock(portrait);
-
+    console.log(subtitle);
     typewriter
       .typeString("Cyber Security Analyst")
       .pauseFor(2500)
@@ -75,10 +77,9 @@ export default function Home() {
         </span>
         <span className="Subtitle" id="Subtitle"></span>
       </div>
-      <div id="About">
-        <div className="About">
-          {about.map((about) => (
-            <>
+      {about.map((about) => (
+        <div id="About">
+          <div className="About" key={about._id}>
             <img className="About-img" src={about.image}></img>
             <div className="About-content">
               <h3 className="font-bold">About</h3>
@@ -95,11 +96,9 @@ export default function Home() {
                 Resume
               </a>
             </div>
-            </>
-            ))}
-          
+          </div>
         </div>
-      </div>
+      ))}
       <div className="Parent-Skills" id="Skills">
         <h3 className="Skills-title font-bold">Skills</h3>
         <div className="Skills">
@@ -108,10 +107,10 @@ export default function Home() {
               .sort((a, b) => a.order - b.order)
               .map((skill) => (
                 <div key={skill._id} className="hover:scale-105 transition">
-                <div key={skill._id} className="Skills-card">
-                  <img className="Skills-img" src={skill.image} />
-                  <h4 className="Skills-card-title">{skill.name}</h4>
-                </div>
+                  <div key={skill._id} className="Skills-card">
+                    <img className="Skills-img" src={skill.image} />
+                    <h4 className="Skills-card-title">{skill.name}</h4>
+                  </div>
                 </div>
               ))}
           </div>
@@ -119,37 +118,44 @@ export default function Home() {
       </div>
       <div className="Parent-Skills" id="Projects">
         <h3 className="Project-title font-bold">Projects</h3>
-        {projects.map((project) => (
-          <a href={project.url} target="_blank">
-          <div key={project._id} className="Projects-card">
-            <div className="max-w-sm hover:scale-105 transition rounded-lg overflow-hidden shadow-lg bg-[#ffffff40]">
-              <img
-                className="w-full h-48 object-cover"
-                src={project.image}
-                alt="Project Image"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{project.name}</div>
-                <span className="text-justify text-base">
-                  {project.description.map((block) => (
-                    <p key={block._key}>{block.children[0].text}</p>
-                  ))}
-                </span>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                {project.hashtags.map((hashtag) => (
-                  <span
-                    key={hashtag}
-                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-                  >
-                    #{hashtag}
+        <div className="grid grid-cols-1 mx-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
+          {projects.map((project) => (
+            <a href={project.url} key={project._id} target="_blank">
+              <div
+                key={project._id}
+                className="max-w-sm hover:scale-105 transition rounded-lg overflow-hidden shadow-lg bg-[#ffffff40]"
+                style={{
+                  height:"100%"
+                }} 
+              
+              >
+                <img
+                  className="w-full h-48 object-cover"
+                  src={project.image}
+                  alt="Project Image"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">{project.name}</div>
+                  <span className="text-justify text-base">
+                    {project.description.map((block) => (
+                      <p key={block._key}>{block.children[0].text}</p>
+                    ))}
                   </span>
-                ))}
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  {project.hashtags.map((hashtag) => (
+                    <span
+                      key={hashtag}
+                      className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                    >
+                      #{hashtag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
-          </a>
-        ))}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

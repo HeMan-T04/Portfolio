@@ -76,3 +76,25 @@ export async function getAbout() {
     return []; // Return an empty array in case of an error
   }
 }
+
+export async function getSubtitle() {
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
+    apiVersion: "2023-11-09",
+  });
+  try {
+    const data = await client.fetch(
+      groq`*[_type == "subtitlePage"]{
+            _id,
+            _createdAt,
+            subtitle
+        }`
+    );
+
+    return data || []; // Ensure data is an array, or return an empty array if it's falsy
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return []; // Return an empty array in case of an error
+  }
+}
