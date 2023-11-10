@@ -78,7 +78,7 @@ export default function Home() {
         <span className="Subtitle" id="Subtitle"></span>
       </div>
       {about.map((about) => (
-        <div id="About">
+        <div key = {about._id} id="About">
           <div className="About" key={about._id}>
             <img className="About-img" src={about.image}></img>
             <div className="About-content">
