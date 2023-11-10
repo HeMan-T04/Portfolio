@@ -6,12 +6,12 @@ const MatrixRainBackground = () => {
   const canvasRef = useRef();
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ'.split('');
   const fontSize = 10;
-  let columns, drops, ctx;
 
   useEffect(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
-    ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
+    let columns, drops;
 
     function adjustCanvasSize() {
       canvas.width = container.clientWidth;
