@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'HeManT',
-  description: ' Hello Everyone! My Name is Hemant Kathuria. I am a Cyber Security Analyst and a Full Stack Developer. I enjoy playing CTFs, developing, and learning whenever I get a chance. If you want to play a CTF or discuss anything about security, feel free to ping me.',
+  description: 'Hello Everyone! My Name is Hemant Kathuria. I am a Cyber Security Analyst and a Full Stack Developer. I enjoy playing CTFs, developing, and learning whenever I get a chance. If you want to play a CTF or discuss anything about security, feel free to ping me.',
 }
 
 export default function RootLayout({ children }) {
