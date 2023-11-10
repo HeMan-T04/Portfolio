@@ -1,0 +1,216 @@
+.Name {
+    font-size: 5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 25rem;
+    left: 10rem;
+}
+
+.Subtitle {
+    font-size: 2rem;
+    font-family: monospace;
+    position: absolute;
+    top: 31rem;
+    left: 10rem;
+}
+
+.About {
+    display: flex;
+    flex-direction: row;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color:white;
+    font-family: monospace;
+}
+.Parent-Skills{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color:white;
+}
+.Skills {
+    display: flex;
+    flex-direction: row;
+    margin-left: 12rem;
+    margin-right: 12rem;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+.Skills-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 3.75rem;
+    line-height: 1;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:1rem;
+
+}
+.Skills-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+.Skills-card{
+    display: flex;
+    flex-direction: row;
+    padding: 20%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    background-color: #ffffff40!important;
+    border-radius:2rem;
+    margin-left:1rem;
+    margin-right:1rem;
+    border:none;
+    outline:none;
+    font-size: 1.6rem;
+    height:6rem;
+    font-family: monospace;
+}
+.Skills-card:hover{
+    visibility: visible; 
+    opacity: 1; 
+    will-change: transform; 
+    transform: perspective(300px) rotateX(0deg) rotateY(0deg);
+}
+.Skills-img{
+    width:5rem;
+    height:5rem;
+    object-fit:fill;
+    margin-right:1rem;
+    border-radius:9999px;
+}
+.About-img {
+    margin-right: 3rem;
+    border-radius: 9999px;
+    width: 20rem;
+    height: 20rem;
+}
+
+.About-content {
+    display: flex;
+    margin-right: 5rem;
+    flex-direction: column;
+    font-size: 3.75rem;
+    line-height: 1;
+}
+.sideNav{
+    position:fixed;
+    z-index:1;
+    right:0;
+    margin-top:15rem;
+    color:white;
+}
+.sideNav-button{
+    background-color:transparent;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding:1rem;
+    margin:1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: monospace;
+}
+
+.About-matter {
+    margin-top: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.About-button{
+    /* background-color:#C8C8C8; */
+    background-color: #ffffff40!important;
+    border-radius: 9999px;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width:100%;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: monospace;
+}
+@media screen and (max-width: 600px) {
+    body{
+        overflow-x: hidden;
+    }
+    .Name {
+        font-size: 3rem;
+        top: 15rem;
+        left: 3rem;
+    }
+    .Subtitle {
+        font-size: 1rem;
+        top: 19rem;
+        left: 3rem;
+    }
+    .Subtitle1 {
+        display: none;
+    }
+    .About{
+        display: inline;
+        margin-left: 5rem;
+        margin-right:5rem;
+        height:auto;
+    }
+    .About-img{
+        margin:2rem;
+        text-align: center;
+        width:12rem;
+        height:12rem;
+    }
+    .About-content{
+        margin: 2rem;
+        font-size: 2rem;
+    }
+    .About-matter{
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+    .sideNav{
+        margin-top: 5rem;
+        /* margin: 0%; */
+        padding: 0%;
+        float:right;
+        right:-2rem;
+    }
+    .sideNav-button{
+        padding:0;
+        transform: rotate(90deg);
+        margin-top:5rem;
+        font-size: 1rem;
+        overflow-x: hidden;
+    }
+    .Parent-Skills{
+        height:auto;
+        margin-top:20rem;
+    }
+    .Skills-title{
+        font-size: 3rem;    
+    }
+    .Skills-grid{
+        display:block;
+        /* width:100%; */
+    }
+    .Skills-card{
+        display: flex;
+        margin-left:0;
+        margin-right:0;
+        margin-bottom:1rem;
+        height:auto;
+        width:70vw;
+    }
+}
