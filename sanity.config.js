@@ -32,10 +32,13 @@ const config = defineConfig({
               .child(
                 S.document().schemaType("subtitlePage").documentId("subtitlePage")
               ),
+            S.listItem()
+              .title("Socials")
+              .child(S.document().schemaType("socialsPage").documentId("socialsPage")),
             S.divider(),
             // Regular document types
             ...S.documentTypeListItems().filter(
-              (item) => !["aboutPage","subtitlePage"].includes(item.getId())
+              (item) => !["aboutPage","subtitlePage","socialsPage"].includes(item.getId())
             ),
           ]),
     }),
