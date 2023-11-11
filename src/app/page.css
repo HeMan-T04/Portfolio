@@ -69,7 +69,11 @@
     justify-content: center;
     align-items: center;
     margin-bottom:2rem;
+    font-weight: bold;
 
+}
+.Subtitle2{
+    padding-left: 1rem;
 }
 .Skills-grid{
     display: grid;
@@ -187,6 +191,9 @@
     .Subtitle1 {
         display: none;
     }
+    .Subtitle2 {
+        display: none;
+    }
     .About{
         display: inline;
         margin-left: 5rem;
@@ -208,7 +215,7 @@
         font-size: 1rem;
     }
     .sideNav{
-        margin-top: 5rem;
+        margin-top: 5vh;
         /* margin: 0%; */
         padding: 0%;
         float:right;

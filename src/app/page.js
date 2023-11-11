@@ -5,7 +5,7 @@ import Typewriter from "typewriter-effect";
 import { useEffect, useState, FormEvent} from "react";
 import "./page.css";
 import { getAbout, getProjects, getSocials } from "../../sanity/sanity-utils";
-import { getSkills, getSubtitle } from "../../sanity/sanity-utils";
+import { getSkills, getSubtitle, getCerts } from "../../sanity/sanity-utils";
 import Contact from "./contact";
 export default function Home() {
   const [skills, setSkills] = useState([]);
@@ -13,6 +13,7 @@ export default function Home() {
   const [about, setAbout] = useState([]);
   const [subtitle, setSubtitle] = useState([]);
   const [socials, setSocials] = useState([]);
+  const [certs, setCerts] = useState([]);
   
   useEffect(() => {
     getProjects().then((data) => setProjects(data));
@@ -20,6 +21,7 @@ export default function Home() {
     getSubtitle().then((data) => setSubtitle(data));
     getSocials().then((data) => setSocials(data));
     getSkills().then((data) => setSkills(data));
+    getCerts().then((data) => setCerts(data));
   }, []);
   return (
     <div style={{}}>
@@ -37,6 +39,9 @@ export default function Home() {
         <div className="sideNav-button">
           <a href="#Projects">/Projects</a>
         </div>
+        {/* <div className="sideNav-button">
+          <a href="#Certs">/Certs</a>
+        </div> */}
         <div className="sideNav-button">
           <a href="#Contact">/Contact</a>
         </div>
@@ -146,6 +151,48 @@ export default function Home() {
             ))}
         </div>
       </div>
+      {/* <div className="Parent-Projects" id="Certs">
+        <h3 className="Project-title">Certifications
+        <span className="Subtitle2">& Courses</span></h3>
+        <div className="grid grid-cols-1 mx-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-cols-max gap-4">
+          {certs
+            .sort((a, b) => a.order - b.order)
+            .map((certs) => (
+              <a href={certs.url} key={certs._id} target="_blank">
+                <div
+                  className="max-w-sm hover:scale-105 transition rounded-lg overflow-hidden shadow-lg bg-[#ffffff40]"
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column", // Align children in a column
+                  }}
+                >
+                  <img
+                    className="w-48 h-48 mx-auto object-cover rounded-full"
+                    src={certs.image}
+                    alt="Project Image"
+                  />
+                  <div className="px-6 py-4 flex flex-col flex-grow items-center justify-center">
+                    {" "}
+                    <div className="font-bold text-xl mb-2 ">{certs.name}</div>
+                    <span className="text-justify text-base">
+                      {certs.description.map((block) => (
+                        <p key={block._key}>{block.children[0].text}</p>
+                      ))}
+                    </span>
+                  </div>
+                  <div className="px-6 pt-4 pb-2">
+                    <div style={{ display: "flex", flexWrap: "wrap" }}>
+                      <button className="inline-block w-full bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                        <a href={certs.url} className="flex flex-row justify-center"target="_blank"><img style={{marginRight:"0.4rem"}} width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/visible--v2.png" alt="external-link"/>View Certificate</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+        </div>
+      </div> */}
       <div id="Contact" className="Parent-Projects">
         <h3 className="Project-title font-bold my-16">Contact Me</h3>
         {/* <div className="flex items-center justify-center p-12"> */}

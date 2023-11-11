@@ -29,6 +29,35 @@ export async function getProjects() {
   }
 }
 
+export async function getCerts(){
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET,
+    apiVersion: "2023-11-09",
+  });
+  
+    try {
+      const data = await client.fetch(
+        groq`*[_type == "certs"]{
+              order,
+              _id,
+              _createdAt,
+              name,
+              "slug": slug.current,
+              "image": image.asset->url,
+              url,
+              description
+          }`
+      );
+  
+      return data || []; // Ensure data is an array, or return an empty array if it's falsy
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      return []; // Return an empty array in case of an error
+    }
+  
+}
+
 export async function getSkills() {
   const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
