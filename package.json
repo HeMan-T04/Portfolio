@@ -11,12 +11,15 @@
   "dependencies": {
     "@mui/material": "^5.14.14",
     "@tailwindcss/typography": "^0.5.10",
+    "@types/nodemailer": "^6.4.14",
     "dotenv": "^16.3.1",
     "mui": "^0.0.1",
     "next": "14.0.1",
     "next-sanity": "^6.0.1",
+    "nodemailer": "^6.9.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.48.2",
     "sanity": "^3.19.2",
     "typewriter-effect": "^2.21.0"
   },
