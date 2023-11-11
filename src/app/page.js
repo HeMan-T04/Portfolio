@@ -7,6 +7,19 @@ import "./page.css";
 import { getAbout, getProjects, getSocials } from "../../sanity/sanity-utils";
 import { getSkills, getSubtitle, getCerts } from "../../sanity/sanity-utils";
 import Contact from "./contact";
+export const metadata = {
+  metadataBase: new URL('https://portfolio-ruby-ten-89.vercel.app/'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US',
+      'de-DE': '/de-DE',
+    },
+  },
+  openGraph: {
+    images: '/opengraph-image.png',
+  },
+}
 export default function Home() {
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
