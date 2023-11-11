@@ -90,15 +90,16 @@ export async function getSubtitle() {
             _id,
             _createdAt,
             list
-        }`
+        }[0]`
     );
 
-    return data || []; // Ensure data is an array, or return an empty array if it's falsy
+    return data?.list || []; // Ensure data is an object, and return the list property or an empty array
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching subtitle:", error);
     return []; // Return an empty array in case of an error
   }
 }
+
 
 export async function getSocials() {
   const client = createClient({
