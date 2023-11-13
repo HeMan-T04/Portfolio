@@ -25,7 +25,6 @@ export default function Home() {
   }, []);
   return (
     <div style={{}}>
-      <meta ogImage="https://portfolio-ruby-ten-89.vercel.app/opengraph-image.png" />
       <MatrixRainCanvas />
       <div className="sideNav">
         <div className="sideNav-button">
