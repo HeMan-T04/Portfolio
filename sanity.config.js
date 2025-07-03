@@ -22,9 +22,7 @@ const config = defineConfig({
 
               .title("About")
               .child(
-                // Instead of rendering a list of documents, we render a single
-                // document, specifying the `documentId` manually to ensure
-                // that we're editing the single instance of the document
+                // 
                 S.document().schemaType("aboutPage").documentId("aboutPage")
               ),
             S.listItem()
